@@ -2,10 +2,13 @@ namespace TestProject.TestProject;
 
 page 50100 "Google API Configuration"
 {
-    ApplicationArea = All;
-    Caption = 'Google API Configuration';
     PageType = Card;
+    ApplicationArea = All;
+    UsageCategory = Administration;
     SourceTable = "Google API Setup";
+    Caption = 'Google API Configuration';
+    InsertAllowed = false;
+    DeleteAllowed = false;
 
     layout
     {
@@ -13,17 +16,26 @@ page 50100 "Google API Configuration"
         {
             group(General)
             {
-                Caption = 'General';
 
                 field("API Key"; Rec."API Key")
                 {
-                    ToolTip = 'Specifies the value of the API Key field.', Comment = '%';
+                    ApplicationArea = All;
+                    ToolTip = 'Enter your Google Maps API Key';
+                    ExtendedDatatype = Masked;
                 }
-                field("Enable Geocoding "; Rec."Enable Geocoding ")
+                field("Enable Geocoding "; Rec."Enable Geocoding")
                 {
-                    ToolTip = 'Specifies the value of the Enable Geocoding field.', Comment = '%';
+                    ApplicationArea = All;
+                    ToolTip = 'Enable/disable geocoding functionality';
                 }
             }
         }
     }
+
+    // Ensure the setup record exists when the page opens
+    trigger OnOpenPage()
+    begin
+        // Call the GetSetup() method to handle record existence
+        Rec.GetSetup();
+    end;
 }
