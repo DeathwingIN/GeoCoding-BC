@@ -6,7 +6,7 @@ pageextension 50100 "Customer Card Ext" extends "Customer Card"
 {
     layout
     {
-        addlast(General)
+        addlast("Address & Contact")
         {
             field(Latitude; Rec.Latitude)
             {
